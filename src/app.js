@@ -3,6 +3,7 @@ const express = require('express')
 //* Configuraciones iniciales
 const app = express()
 
+//? Esta configuracion es para habilitar el req.body
 app.use(express.json())
 
 app.get('/', (req, res) => {

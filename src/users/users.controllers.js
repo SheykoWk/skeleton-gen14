@@ -10,7 +10,7 @@ const getAllUsers = () => {
 
 const getUserById = (id) => {
   const data = userDB.filter((item) => item.id === id);
-  return data[0];
+  return data.length ? data[0] : false
   //? select * from users where id = ${id};
 };
 
