@@ -56,7 +56,21 @@ const editUser = (id, data) => {
   }
 };
 
+const deleteUser = (id) => {
+  const index = userDB.findIndex(user => user.id === id)
+  if (index !== -1) {
+    userDB.splice(index, 1)
+    return true
+  } else {
+    return false
+  } 
+}
 
-
-
+module.exports = {
+  createUser,
+  getAllUsers,
+  getUserById,
+  editUser,
+  deleteUser
+}
 
