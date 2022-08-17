@@ -1,7 +1,20 @@
 const uuid = require("uuid");
 const { hashPassword } = require("../utils/crypt");
 
-const userDB = [];
+const userDB = [{
+  "id": "74cd6011-7e76-4d6d-b25b-1d6e4182ec2f",
+  "first_name": "Sahid",
+  "last_name": "Kick",
+  "email": "sahid.kick@academlo.com",
+  "password": "$2b$10$TNGcRFonQH98rVqFaBVfpOEEv2Xcu5ej14tWqKim3z3L6Tr.ZIaqC",
+  "phone": "1234567890",
+  "birthday_date": "22/10/2000",
+  "rol": "normal",
+  "profile_image": "",
+  "country": "mexico",
+  "is_active": true,
+  "verified": false
+}];
 
 const getAllUsers = () => {
   return userDB;
@@ -66,11 +79,19 @@ const deleteUser = (id) => {
   } 
 }
 
+const getUserByEmail = (email) => {
+  const data = userDB.filter((item) => item.email === email);
+  return data.length ? data[0] : false
+  //? select * from users where email = ${email};
+}
+
+
 module.exports = {
   createUser,
   getAllUsers,
   getUserById,
   editUser,
-  deleteUser
+  deleteUser,
+  getUserByEmail
 }
 

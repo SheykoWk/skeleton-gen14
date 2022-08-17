@@ -85,7 +85,7 @@ const remove = (req, res) => {
   const data = userControllers.deleteUser(id);
 
   if (data) {
-    return res.status(204).json({ message: `Deleted user with id: ${id}` });
+    return res.status(204).json();
   } else {
     return res.status(400).json({ message: "Invalid ID" });
   }
