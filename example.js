@@ -1,11 +1,8 @@
-const sum = (a, b) => a + b;
-
-const myFunc = () => {
-  return sum(2, 7); //? retorna a + b de la funcion sum
-};
-
-console.log(myFunc());
-
-{
-    
+const newObj = {
+  name: null,
+  last_name: null,
+  age: null
 }
+
+
+console.log(Object.keys(newObj).length)
