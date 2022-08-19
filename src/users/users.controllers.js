@@ -54,7 +54,7 @@ const editUser = (id, data) => {
       first_name: data.first_name,
       last_name: data.last_name,
       email: data.email,
-      password: hashPassword(data.password),
+      password: userDB[index].password,
       phone: data.phone, //unico
       birthday_date: data.birthday_date,
       rol: data.rol,
