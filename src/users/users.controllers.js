@@ -9,7 +9,7 @@ const userDB = [{
   "password": "$2b$10$TNGcRFonQH98rVqFaBVfpOEEv2Xcu5ej14tWqKim3z3L6Tr.ZIaqC",
   "phone": "1234567890",
   "birthday_date": "22/10/2000",
-  "rol": "normal",
+  "rol": "admin",
   "profile_image": "",
   "country": "mexico",
   "is_active": true,

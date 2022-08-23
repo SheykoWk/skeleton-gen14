@@ -167,8 +167,21 @@ const editMyUser = (req, res) => {
   }
 }
 
+const getMyUser = (req, res) => {
+  const id = req.user.id;
+  const data = userControllers.getUserById(id)
+  res.status(200).json(data)
+}
 
-
+const removeMyUser = (req, res) => {
+  const id = req.user.id;
+  const data = userControllers.deleteUser(id)
+  if(data){
+    res.status(204).json()
+  } else {
+    res.status(400).json({message: 'invalid id'})
+  }
+}
 
 
 
@@ -178,5 +191,7 @@ module.exports = {
   register,
   remove,
   edit,
-  editMyUser
+  editMyUser,
+  getMyUser,
+  removeMyUser
 };

@@ -1,6 +1,7 @@
 //* Dependencias
 const express = require("express");
 const passport = require("passport");
+const { verbMiddleware } = require("./middleware/ejemplos/verb");
 require("./middleware/auth.middleware")(passport);
 
 //*Archivos de rutas
@@ -13,10 +14,11 @@ const app = express();
 //? Esta configuracion es para habilitar el req.body
 app.use(express.json());
 
+
+
 app.get("/", (req, res) => {
   res.status(200).json({ message: "All ok!" });
 });
-
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
 
