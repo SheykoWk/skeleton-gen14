@@ -122,7 +122,7 @@ const edit = (req, res) => {
       },
     });
   } else {
-    const response = userControllers.editUser(id, data)
+    const response = userControllers.editUser(id, data, req.user.rol)
     return res.status(200).json({
       message: 'User edited succesfully',
       user: response

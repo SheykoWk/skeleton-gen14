@@ -46,7 +46,7 @@ const createUser = (data) => {
   return newUser;
 };
 
-const editUser = (id, data) => {
+const editUser = (id, data,userRol) => {
   const index = userDB.findIndex((user) => user.id === id);
   if (index !== -1) {
     userDB[index] = {
@@ -57,7 +57,7 @@ const editUser = (id, data) => {
       password: userDB[index].password,
       phone: data.phone, //unico
       birthday_date: data.birthday_date,
-      rol: data.rol,
+      rol: userRol === 'admin' ? data.rol : 'normal',
       profile_image: data.profile_image,
       country: data.country,
       is_active: data.is_active,
