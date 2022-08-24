@@ -36,3 +36,7 @@ app.get("/ejemplo",
 app.listen(8000, () => {
   console.log("Server started at port 8000");
 });
+
+exports.default = app
+exports.app = app
+module.exports = app

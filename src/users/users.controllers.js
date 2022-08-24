@@ -23,6 +23,7 @@ const getAllUsers = () => {
 
 const getUserById = (id) => {
   const data = userDB.filter((item) => item.id === id);
+
   return data.length ? data[0] : false
   //? select * from users where id = ${id};
 };
@@ -34,7 +35,7 @@ const createUser = (data) => {
     last_name: data.last_name, //obligatorio
     email: data.email, //obligatorio y unico
     password: hashPassword(data.password), //obligatorio
-    phone: data.phone ? data.phone : "", //unico
+    phone: data.phone ? data.phone : "", //unico   
     birthday_date: data.birthday_date, //obligatorio
     rol: "normal", //obligatorio y por defecto "normal"
     profile_image: data.profile_image ? data.profile_image : "",
@@ -46,7 +47,7 @@ const createUser = (data) => {
   return newUser;
 };
 
-const editUser = (id, data,userRol) => {
+const editUser = (id, data, userRol) => {
   const index = userDB.findIndex((user) => user.id === id);
   if (index !== -1) {
     userDB[index] = {
