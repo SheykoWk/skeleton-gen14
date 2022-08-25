@@ -6,6 +6,7 @@ const getAll = (req, res) => {
 };
 
 const getById = (req, res) => {
+  console.log(req.params.id)
   const id = req.params.id;
   const data = userControllers.getUserById(id);
 
