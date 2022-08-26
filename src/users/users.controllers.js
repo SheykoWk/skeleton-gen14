@@ -86,6 +86,14 @@ const getUserByEmail = (email) => {
   //? select * from users where email = ${email};
 }
 
+const editProfileImg = (userID, imgUrl) => {
+  const index = userDB.findIndex(user => user.id === userID)
+  if(index !== -1){
+    userDB[index].profile_image = imgUrl
+    return userDB[index]
+  }
+  return false
+}
 
 module.exports = {
   createUser,
@@ -93,6 +101,7 @@ module.exports = {
   getUserById,
   editUser,
   deleteUser,
-  getUserByEmail
+  getUserByEmail,
+  editProfileImg
 }
 

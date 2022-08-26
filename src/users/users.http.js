@@ -184,6 +184,17 @@ const removeMyUser = (req, res) => {
   }
 }
 
+const postProfileImg = (req, res) => {
+  const userId = req.user.id;
+  //mi-sitio.com/api/v1/users/me/profile-img
+  //localhost:8000/api/v1/users/me/profile-img
+
+  const imgPath = req.hostname + ':8000' + '/api/v1/uploads/' + req.file.filename 
+
+  const data = userControllers.editProfileImg(userId, imgPath)
+  res.status(200).json(data)
+
+}
 
 
 module.exports = {
@@ -194,5 +205,6 @@ module.exports = {
   edit,
   editMyUser,
   getMyUser,
-  removeMyUser
+  removeMyUser,
+  postProfileImg
 };
