@@ -1,20 +1,26 @@
 const userControllers = require("./users.controllers");
 
 const getAll = (req, res) => {
-  const data = userControllers.getAllUsers();
-  res.status(200).json({ items: data.length, users: data });
+  userControllers
+    .getAllUsers()
+    .then((response) => {
+      res.status(200).json({ items: response.length, users: response });
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
 };
 
 const getById = (req, res) => {
-  console.log(req.params.id)
   const id = req.params.id;
-  const data = userControllers.getUserById(id);
-
-  if (data) {
-    res.status(200).json(data);
-  } else {
-    res.status(404).json({ message: `El usuario con el id ${id} no existe` });
-  }
+  userControllers
+    .getUserById(id)
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch((err) => {
+      res.status(404).json({ message: `El usuario con el id ${id} no existe` });
+    });
 };
 /*
 {
@@ -57,8 +63,8 @@ const register = (req, res) => {
     !data.email ||
     !data.password ||
     !data.birthday_date ||
-    !data.country
-  ) { 
+    !data.country    
+  ) {
     return res.status(400).json({
       message: "All fields must be completed",
       fields: {
@@ -71,25 +77,31 @@ const register = (req, res) => {
       },
     });
   } else {
-    const response = userControllers.createUser(data);
-    return res
-      .status(201)
-      .json({
-        message: `User created succesfully with id: ${response.id}`,
-        user: response,
-      });
+    userControllers.createUser(data)
+      .then((response) => {
+        res.status(201).json({
+          message: `User created succesfully with id: ${response.id}`,
+          user: response,
+        });
+      })
+      .catch(err => {
+        res.status(400).json({message: err.errors[0].message})
+      }) 
   }
 };
 
 const remove = (req, res) => {
   const id = req.params.id;
-  const data = userControllers.deleteUser(id);
-
-  if (data) {
-    return res.status(204).json();
-  } else {
-    return res.status(400).json({ message: "Invalid ID" });
-  }
+  userControllers.deleteUser(id)
+    .then((response) => {
+      if(response){
+        res.status(204).json()
+      }else{
+        res.status(400).json({
+          message: 'Invalid ID'
+        })
+      }
+    })
 };
 
 const edit = (req, res) => {
@@ -176,13 +188,13 @@ const getMyUser = (req, res) => {
 
 const removeMyUser = (req, res) => {
   const id = req.user.id;
-  const data = userControllers.deleteUser(id)
-  if(data){
-    res.status(204).json()
+  const data = userControllers.deleteUser(id);
+  if (data) {
+    res.status(204).json();
   } else {
-    res.status(400).json({message: 'invalid id'})
+    res.status(400).json({ message: "invalid id" });
   }
-}
+};
 
 const postProfileImg = (req, res) => {
   const userId = req.user.id;
@@ -196,7 +208,6 @@ const postProfileImg = (req, res) => {
 
 }
 
-
 module.exports = {
   getAll,
   getById,
@@ -206,5 +217,5 @@ module.exports = {
   editMyUser,
   getMyUser,
   removeMyUser,
-  postProfileImg
+  postProfileImg,
 };

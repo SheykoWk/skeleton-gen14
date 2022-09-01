@@ -7,9 +7,25 @@ const path = require('path')
 const userRouter = require("./users/users.router").router;
 const authRouter = require("./auth/auth.router").router;
 
+<<<<<<< HEAD
 //* Configuraciones iniciales
 const app = express();
 
+=======
+const {db} = require('./utils/database')
+
+//* Configuraciones iniciales
+const app = express();
+
+db.authenticate()
+  .then(() => console.log('Database Authenticated'))
+  .catch(err => console.log(err))
+
+db.sync()
+  .then(() => console.log('Database synced'))
+  .catch(err => console.log(err))
+
+>>>>>>> 516e352 (restart git repo)
 //? Esta configuracion es para habilitar el req.body
 app.use(express.json());
 
