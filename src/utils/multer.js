@@ -11,9 +11,4 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({storage})
-<<<<<<< HEAD
 exports.upload = upload
-=======
-
-module.exports = { upload }
->>>>>>> 516e352 (restart git repo)

@@ -1,19 +1,3 @@
-/*
-{
-  "id": "74cd6011-7e76-4d6d-b25b-1d6e4182ec2f",
-  "first_name": "Sahid",
-  "last_name": "Kick",
-  "email": "sahid.kick@academlo.com",
-  "password": "$2b$10$TNGcRFonQH98rVqFaBVfpOEEv2Xcu5ej14tWqKim3z3L6Tr.ZIaqC",
-  "phone": "1234567890",
-  "birthday_date": "22/10/2000",
-  "rol": "admin",
-  "profile_image": "",
-  "country": "mexico",
-  "is_active": true,
-  "verified": false
-}
-*/
 const { DataTypes } = require('sequelize')
 
 const { db } = require('../utils/database')
@@ -24,13 +8,19 @@ const Users = db.define('users', {
         type: DataTypes.UUID,
         allowNull: false,
     },
-    first_name: {
+    firstName: {
         allowNull: false,
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        field: 'first_name'
     },
-    last_name: {
+    lastName: {
         allowNull: false,
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        field: 'last_name'
+    },
+    gender: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
     email: {
         allowNull: false,
@@ -49,20 +39,27 @@ const Users = db.define('users', {
         type: DataTypes.STRING,
 
     },
-    birthday_date: {
+    birthdayDate: {
         allowNull: false,
         type: DataTypes.DATEONLY,
+        field: 'birthday_date'
+    },
+    dni: {
+        type: DataTypes.STRING
     },
     role: {
         allowNull: false,
-        type: DataTypes.STRING,
-        defaultValue: 'normal'
+        type: DataTypes.UUID
     },
-    profile_image: {
+    address: {
+        type: DataTypes.STRING
+    },
+    profileImage: {
         type: DataTypes.STRING,
         validate: {
             isUrl: true
-        }
+        },
+        field: 'profile_image'
     },
     country: {
         allowNull: false,
@@ -77,6 +74,16 @@ const Users = db.define('users', {
         allowNull: false,
         type: DataTypes.BOOLEAN,
         defaultValue: false
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        field: 'created_at'
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        field: 'updated_at'
     }
 })
 
